@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SG Metal Scrap — Scrap Metal Buyers &amp; Recyclers</title>
+<meta name="description" content="SG Metal Scrap buys ferrous &amp; non-ferrous scrap metal with free doorstep pickup, certified weighing and instant payment.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%2312151A'/%3E%3Cpath d='M22 68 L38 30 L50 30 L36 68 Z' fill='%23F0A93B'/%3E%3Cpath d='M48 68 L64 30 L78 30 L62 68 Z' fill='%23C4602B'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#FFFFFF;
+    --paper:#FAFAF8;
+    --paper-2:#F2F1EC;
+    --ink:#12151A;
+    --steel:#5B6470;
+    --steel-soft:#9198A1;
+    --line:#E6E4DD;
+    --rust:#C4602B;
+    --rust-deep:#9C481E;
+    --yellow:#F0A93B;
+    --dark:#14171A;
+    --dark-2:#1E2126;
+    --radius:14px;
+    --shadow-sm:0 2px 10px rgba(18,21,26,.06);
+    --shadow-md:0 16px 40px rgba(18,21,26,.10);
+    --shadow-lg:0 24px 60px rgba(18,21,26,.16);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    background:var(--white);
+    line-height:1.6;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block;}
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;}
+  h1,h2,h3,h4{
+    font-family:'Oswald',sans-serif;
+    font-weight:600;
+    line-height:1.08;
+    letter-spacing:-.01em;
+  }
+  .container{max-width:1180px;margin:0 auto;padding:0 24px;}
+  section{padding:clamp(64px,9vw,120px) 0;}
+  .section-head{max-width:640px;margin-bottom:clamp(36px,5vw,64px);}
+  .section-kicker{
+    font-family:'Roboto Mono',monospace;
+    font-size:12.5px;
+    color:var(--rust);
+    display:flex;align-items:center;gap:8px;
+    margin-bottom:14px;
+  }
+  .section-kicker::before{content:'';width:16px;height:2px;background:var(--rust);display:inline-block;}
+  .section-head h2{font-size:clamp(30px,4.4vw,48px);margin-bottom:14px;}
+  .section-head p{color:var(--steel);font-size:clamp(15.5px,1.4vw,18px);}
+
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:8px;
+    padding:15px 30px;
+    border-radius:100px;
+    font-weight:600;
+    font-size:15px;
+    cursor:pointer;
+    border:1.5px solid transparent;
+    transition:transform .18s ease, box-shadow .25s ease, background .2s ease, border-color .2s ease, color .2s ease;
+    white-space:nowrap;
+  }
+  .btn:active{transform:translateY(1px) scale(.99);}
+  .btn-primary{background:var(--ink);color:var(--white);box-shadow:var(--shadow-sm);}
+  .btn-primary:hover{background:var(--rust);box-shadow:var(--shadow-md);transform:translateY(-2px);}
+  .btn-outline{border-color:var(--line);color:var(--ink);background:var(--white);}
+  .btn-outline:hover{border-color:var(--ink);transform:translateY(-2px);}
+  .btn-ghost-dark{border-color:rgba(255,255,255,.28);color:var(--white);}
+  .btn-ghost-dark:hover{border-color:#fff;background:rgba(255,255,255,.08);}
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    background:rgba(255,255,255,.82);
+    backdrop-filter:blur(10px) saturate(1.4);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-wrap{display:flex;align-items:center;justify-content:space-between;height:78px;}
+  .logo{display:flex;align-items:center;gap:10px;font-family:'Oswald',sans-serif;font-size:21px;font-weight:700;color:var(--ink);}
+  .logo .mark{width:32px;height:32px;flex:none;}
+  .logo span{color:var(--rust);}
+  nav.links{display:flex;gap:32px;}
+  nav.links a{color:var(--steel);font-size:14.5px;font-weight:500;transition:color .2s ease;}
+  nav.links a:hover{color:var(--ink);}
+  .nav-cta{display:flex;align-items:center;gap:18px;}
+  .call-chip{color:var(--ink);font-size:14.5px;font-weight:600;display:flex;align-items:center;gap:8px;}
+  .call-chip svg{width:15px;height:15px;fill:var(--rust);}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;}
+  .burger span{width:22px;height:2px;background:var(--ink);}
+
+  #mobileMenu{
+    display:none;position:fixed;top:78px;left:0;right:0;background:var(--white);
+    z-index:99;padding:14px 24px 24px;border-bottom:1px solid var(--line);box-shadow:var(--shadow-md);
+  }
+  #mobileMenu a{display:block;color:var(--ink);padding:13px 0;font-size:15.5px;border-bottom:1px solid var(--paper-2);}
+  #mobileMenu a.call{color:var(--rust);font-weight:700;border-bottom:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;padding:150px 0 0;background:var(--white);}
+  .hero-bg-grid{
+    position:absolute;inset:0;z-index:0;
+    background-image:
+      linear-gradient(90deg, rgba(18,21,26,.035) 1px, transparent 1px),
+      linear-gradient(rgba(18,21,26,.035) 1px, transparent 1px);
+    background-size:56px 56px;
+    mask-image:radial-gradient(ellipse 70% 55% at 30% 20%, black 40%, transparent 90%);
+  }
+  .hero-grid{
+    position:relative;z-index:1;
+    display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;
+    padding-bottom:56px;
+  }
+  .hero-copy{opacity:0;transform:translateY(16px);animation:heroIn .7s ease forwards;}
+  .hero-visual-wrap{opacity:0;transform:translateY(16px);animation:heroIn .7s ease .12s forwards;position:relative;}
+  @keyframes heroIn{to{opacity:1;transform:translateY(0);}}
+  @media (prefers-reduced-motion:reduce){.hero-copy,.hero-visual-wrap{animation:none;opacity:1;transform:none;}}
+
+  .badge-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;}
+  .badge{
+    display:inline-flex;align-items:center;gap:7px;
+    background:var(--paper);border:1px solid var(--line);
+    padding:7px 14px;border-radius:100px;
+    font-size:12.5px;font-weight:600;color:var(--steel);
+  }
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--rust);}
+
+  .hero h1{font-size:clamp(38px,5.6vw,68px);color:var(--ink);margin-bottom:20px;}
+  .hero h1 .accent{
+    position:relative;display:inline-block;color:var(--ink);
+  }
+  .hero h1 .accent svg{position:absolute;left:0;bottom:-6px;width:100%;height:14px;z-index:-1;}
+  .hero p.lead{color:var(--steel);font-size:clamp(16px,1.5vw,18.5px);max-width:480px;margin-bottom:34px;}
+  .hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:36px;}
+  .hero-chip-stats{display:flex;gap:28px;flex-wrap:wrap;}
+  .hero-chip-stats .chip{display:flex;flex-direction:column;}
+  .hero-chip-stats .chip b{font-family:'Oswald',sans-serif;font-size:24px;color:var(--ink);}
+  .hero-chip-stats .chip span{font-size:12.5px;color:var(--steel-soft);}
+
+  .hero-visual{
+    position:relative;border-radius:24px;overflow:hidden;
+    height:460px;background:var(--dark);
+    box-shadow:var(--shadow-lg);
+  }
+  .hero-photo{width:100%;height:100%;object-fit:cover;object-position:center;}
+  .hero-visual::after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,rgba(18,21,26,.08),rgba(18,21,26,.28));}
+  .hero-visual svg{width:100%;height:100%;}
+  .float-card{
+    position:absolute;left:-24px;bottom:-24px;
+    background:var(--white);border-radius:16px;
+    padding:20px 24px;box-shadow:var(--shadow-lg);
+    display:flex;align-items:center;gap:16px;
+    border:1px solid var(--line);
+  }
+  .float-card .icon-wrap{
+    width:46px;height:46px;border-radius:50%;
+    background:linear-gradient(150deg,var(--yellow),var(--rust));
+    display:flex;align-items:center;justify-content:center;flex:none;
+  }
+  .float-card .icon-wrap svg{width:22px;height:22px;fill:#fff;}
+  .float-card b{font-family:'Oswald',sans-serif;font-size:26px;line-height:1;display:block;}
+  .float-card span{font-size:12.5px;color:var(--steel);}
+  .float-card-top{
+    position:absolute;right:20px;top:20px;
+    background:rgba(255,255,255,.14);backdrop-filter:blur(6px);
+    border:1px solid rgba(255,255,255,.25);
+    border-radius:100px;padding:8px 14px;
+    display:flex;align-items:center;gap:8px;
+    font-size:12px;color:#fff;font-weight:600;
+  }
+  .float-card-top .pulse{width:7px;height:7px;border-radius:50%;background:#4ADE80;box-shadow:0 0 0 rgba(74,222,128,.6);animation:pulse 2s infinite;}
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(74,222,128,.5);}
+    70%{box-shadow:0 0 0 8px rgba(74,222,128,0);}
+    100%{box-shadow:0 0 0 0 rgba(74,222,128,0);}
+  }
+
+  /* ticker */
+  .ticker-wrap{
+    border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+    background:var(--paper);overflow:hidden;position:relative;z-index:1;
+  }
+  .ticker{display:flex;width:max-content;animation:scroll 26s linear infinite;}
+  .ticker:hover{animation-play-state:paused;}
+  .ticker span{
+    padding:16px 34px;font-family:'Roboto Mono',monospace;font-size:13px;color:var(--steel);
+    display:flex;align-items:center;gap:10px;white-space:nowrap;
+  }
+  .ticker span::before{content:'●';color:var(--rust);font-size:8px;}
+  @keyframes scroll{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  @media (prefers-reduced-motion:reduce){.ticker{animation:none;}}
+
+  /* ---------- BENTO shared ---------- */
+  .bento{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;}
+  .bcard{
+    background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+    padding:28px;transition:box-shadow .25s ease, transform .25s ease, border-color .25s ease;
+  }
+  .bcard:hover{box-shadow:var(--shadow-md);transform:translateY(-3px);border-color:transparent;}
+  .span-2{grid-column:span 2;}
+  .span-3{grid-column:span 3;}
+  .span-4{grid-column:span 4;}
+  .span-6{grid-column:span 6;}
+  .row-2{grid-row:span 2;}
+
+  /* ---------- MATERIALS ---------- */
+  .materials{background:var(--white);}
+  .mat-icon{
+    width:44px;height:44px;border-radius:10px;background:var(--paper);
+    display:flex;align-items:center;justify-content:center;margin-bottom:18px;
+  }
+  .mat-icon svg{width:22px;height:22px;stroke:var(--rust);fill:none;stroke-width:1.6;}
+  .bcard h3{font-size:19px;margin-bottom:8px;display:flex;align-items:center;gap:10px;}
+  .bcard.large h3{font-size:23px;}
+  .tag{
+    font-family:'Roboto Mono',monospace;font-size:10.5px;font-weight:500;
+    padding:3px 9px;border-radius:100px;color:var(--white);letter-spacing:.02em;
+  }
+  .tag.ferrous{background:var(--steel);}
+  .tag.nonferrous{background:var(--rust);}
+  .tag.other{background:var(--ink);}
+  .bcard p{color:var(--steel);font-size:14.5px;}
+  .bcard .rate{
+    margin-top:16px;font-family:'Roboto Mono',monospace;font-size:12px;color:var(--steel-soft);
+    display:flex;align-items:center;gap:6px;
+  }
+  .ledger-note{margin-top:28px;color:var(--steel);font-size:14.5px;padding:18px 22px;background:var(--paper);border-radius:var(--radius);border:1px solid var(--line);}
+
+  /* ---------- WHY US ---------- */
+  .why{background:var(--paper);}
+  .why-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;}
+  .why-card{
+    border-radius:var(--radius);padding:30px 28px;transition:transform .25s ease;
+  }
+  .why-card.feature{
+    grid-column:span 3;grid-row:span 2;
+    background:var(--dark);color:#fff;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    position:relative;overflow:hidden;
+  }
+  .why-card.feature::before{
+    content:'';position:absolute;top:-40%;right:-30%;width:70%;height:90%;
+    background:radial-gradient(circle,rgba(240,169,59,.25),transparent 70%);
+  }
+  .why-card.light{grid-column:span 3;background:var(--white);border:1px solid var(--line);}
+  .why-card.light.wide{grid-column:span 3;}
+  .why-card:hover{transform:translateY(-3px);}
+  .why-card h3{font-size:20px;margin-bottom:10px;}
+  .why-card.feature h3{font-size:27px;}
+  .why-card p{font-size:14.5px;color:var(--steel);}
+  .why-card.feature p{color:rgba(255,255,255,.68);}
+  .why-num{
+    font-family:'Roboto Mono',monospace;font-size:12.5px;margin-bottom:16px;display:block;
+    color:var(--rust);
+  }
+  .why-card.feature .why-num{color:var(--yellow);}
+
+  /* ---------- PROCESS ---------- */
+  .process{background:var(--white);}
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;}
+  .steps::before{
+    content:'';position:absolute;top:34px;left:5%;right:5%;height:1px;background:var(--line);z-index:0;
+  }
+  .step{position:relative;z-index:1;padding:0 22px 0 0;}
+  .step-num{
+    width:68px;height:68px;border-radius:50%;
+    background:var(--white);border:1.5px solid var(--line);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Oswald',sans-serif;font-size:24px;font-weight:600;color:var(--ink);
+    margin-bottom:22px;transition:border-color .25s ease, color .25s ease, background .25s ease;
+  }
+  .step:hover .step-num{background:var(--ink);color:#fff;border-color:var(--ink);}
+  .step h4{font-size:19px;margin-bottom:8px;}
+  .step p{color:var(--steel);font-size:14.5px;max-width:230px;}
+
+  /* ---------- YARD ---------- */
+  .yard{background:var(--paper);}
+  .yard-gallery{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;}
+  .yard-photo{position:relative;min-height:390px;border-radius:20px;overflow:hidden;background:var(--dark);box-shadow:var(--shadow-md);}
+  .yard-photo img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;}
+  .yard-photo figcaption{position:absolute;left:18px;right:18px;bottom:18px;color:#fff;background:rgba(18,21,26,.76);backdrop-filter:blur(7px);border:1px solid rgba(255,255,255,.16);border-radius:12px;padding:13px 15px;font-size:13px;line-height:1.45;}
+  .yard-photo figcaption b{display:block;font-size:15px;margin-bottom:2px;color:#fff;}
+  .yard-highlights{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px;}
+  .yard-tile{
+    border-radius:var(--radius);display:flex;align-items:center;gap:12px;
+    color:var(--steel);font-size:13px;padding:15px 16px;
+    border:1px solid var(--line);background:var(--white);
+  }
+  .yard-tile svg{width:24px;height:24px;stroke:var(--rust);fill:none;stroke-width:1.6;flex:none;}
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    background:var(--dark);color:#fff;position:relative;overflow:hidden;
+  }
+  .contact::before{
+    content:'';position:absolute;inset:0;
+    background-image:radial-gradient(rgba(255,255,255,.08) 1px, transparent 1px);
+    background-size:22px 22px;
+    mask-image:radial-gradient(ellipse 60% 60% at 80% 20%, black, transparent 75%);
+  }
+  .contact .section-head h2, .contact .section-head p{color:#fff;}
+  .contact .section-head p{color:rgba(255,255,255,.62);}
+  .contact-grid{position:relative;z-index:1;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;}
+  .form-card{background:#fff;color:var(--ink);padding:clamp(28px,3vw,42px);border-radius:20px;box-shadow:var(--shadow-lg);}
+  .form-card h3{font-size:23px;margin-bottom:6px;}
+  .form-card p.sub{color:var(--steel);font-size:14.5px;margin-bottom:26px;}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-size:12.5px;font-weight:700;margin-bottom:7px;color:var(--ink);text-transform:none;}
+  .field input, .field select, .field textarea{
+    width:100%;padding:13px 15px;border:1.5px solid var(--line);border-radius:10px;
+    font-family:'Inter',sans-serif;font-size:14.5px;background:var(--paper);color:var(--ink);
+    transition:border-color .2s ease, background .2s ease;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{outline:none;border-color:var(--rust);background:#fff;}
+  .field textarea{resize:vertical;min-height:90px;}
+  .form-msg{margin-top:14px;font-size:14px;font-weight:600;display:none;}
+  .form-msg.ok{color:#2E7D32;display:block;}
+  .form-msg.err{color:#C4382A;display:block;}
+  .form-note{margin-top:16px;font-size:12px;color:var(--steel-soft);}
+
+  .contact-info h3{font-size:21px;margin-bottom:20px;color:#fff;}
+  .info-row{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,.12);}
+  .info-row .icon{width:40px;height:40px;flex:none;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);border-radius:10px;display:flex;align-items:center;justify-content:center;}
+  .info-row .icon svg{width:18px;height:18px;fill:var(--yellow);}
+  .info-row h4{font-size:14.5px;margin-bottom:3px;color:#fff;font-family:'Inter',sans-serif;font-weight:600;}
+  .info-row p, .info-row a{color:rgba(255,255,255,.62);font-size:14.5px;}
+  .map-box{
+    margin-top:26px;height:170px;border-radius:14px;
+    background:rgba(255,255,255,.05);
+    display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.5);
+    font-size:12.5px;text-align:center;padding:16px;border:1px dashed rgba(255,255,255,.18);
+  }
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--dark-2);color:rgba(255,255,255,.55);padding:56px 0 24px;}
+  .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:36px;border-bottom:1px solid rgba(255,255,255,.1);}
+  .footer-grid h4{color:#fff;font-size:14.5px;margin-bottom:16px;font-family:'Inter',sans-serif;font-weight:600;}
+  .footer-grid p{font-size:14px;max-width:280px;}
+  .footer-grid ul li{margin-bottom:10px;font-size:14px;}
+  .footer-grid ul li a:hover{color:#fff;}
+  .footer-logo{font-family:'Oswald',sans-serif;font-size:19px;font-weight:700;color:#fff;margin-bottom:14px;}
+  .footer-logo span{color:var(--yellow);}
+  .footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:22px;font-size:13px;flex-wrap:wrap;gap:10px;}
+
+  /* ---------- WHATSAPP FAB ---------- */
+  .wa-fab{
+    position:fixed;bottom:26px;right:26px;z-index:90;width:58px;height:58px;border-radius:50%;
+    background:#25D366;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 10px 26px rgba(37,211,102,.4);transition:transform .2s ease;
+  }
+  .wa-fab:hover{transform:scale(1.08);}
+  .wa-fab svg{width:27px;height:27px;fill:#fff;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:980px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{height:320px;order:-1;margin-bottom:36px;}
+    .bento, .why-grid{grid-template-columns:repeat(2,1fr);}
+    .bcard.span-2,.bcard.span-3,.bcard.span-4{grid-column:span 1;}
+    .why-card.feature, .why-card.light{grid-column:span 2;}
+    .why-card.feature{grid-row:auto;}
+    .steps{grid-template-columns:1fr 1fr;row-gap:36px;}
+    .steps::before{display:none;}
+    .yard-gallery{grid-template-columns:1fr;}
+    .yard-photo{min-height:340px;}
+    .contact-grid{grid-template-columns:1fr;}
+    .footer-grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:680px){
+    nav.links, .call-chip{display:none;}
+    .burger{display:flex;}
+    section{padding:56px 0;}
+    .field-row{grid-template-columns:1fr;}
+    .bento, .why-grid, .steps{grid-template-columns:1fr;}
+    .yard-highlights{grid-template-columns:1fr;}
+    .yard-photo{min-height:300px;}
+    .why-card.feature, .why-card.light{grid-column:span 1;}
+    .footer-grid{grid-template-columns:1fr;}
+    .float-card{left:12px;bottom:-20px;padding:14px 18px;}
+    .hero-chip-stats{gap:20px;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;animation:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container nav-wrap">
+    <a href="#" class="logo">
+      <svg class="mark" viewBox="0 0 100 100"><rect width="100" height="100" rx="20" fill="#12151A"/><path d="M22 68 L38 30 L50 30 L36 68 Z" fill="#F0A93B"/><path d="M48 68 L64 30 L78 30 L62 68 Z" fill="#C4602B"/></svg>
+      SG METAL <span>SCRAP</span>
+    </a>
+    <nav class="links">
+      <a href="#materials">Materials</a>
+      <a href="#why">Why Us</a>
+      <a href="#process">Process</a>
+      <a href="#yard">Our Yard</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="call-chip" href="tel:+911234567890">
+        <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.7 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4.6c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8z"/></svg>
+        +91 12345 67890
+      </a>
+      <a href="#contact" class="btn btn-primary">Request Pickup</a>
+      <button class="burger" id="burgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div id="mobileMenu">
+  <a href="#materials">Materials</a>
+  <a href="#why">Why Us</a>
+  <a href="#process">Process</a>
+  <a href="#yard">Our Yard</a>
+  <a href="#contact">Contact</a>
+  <a href="tel:+911234567890" class="call">Call +91 12345 67890</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="badge-row">
+          <span class="badge"><span class="dot"></span>Free doorstep pickup</span>
+          <span class="badge"><span class="dot"></span>Instant payment</span>
+        </div>
+        <h1>Your scrap has value.<br>We make sure you<br><span class="accent">get paid for it.
+          <svg viewBox="0 0 300 14" preserveAspectRatio="none"><path d="M2 10 Q150 2 298 10" stroke="#F0A93B" stroke-width="6" fill="none" stroke-linecap="round"/></svg>
+        </span></h1>
+        <p class="lead">SG Metal Scrap buys ferrous and non-ferrous scrap directly from homes, factories and construction sites — with certified weighing, fair daily rates and cash on the spot.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">Request a Pickup</a>
+          <a href="tel:+911234567890" class="btn btn-outline">Call Now</a>
+        </div>
+        <div class="hero-chip-stats">
+          <div class="chip"><b>15+</b><span>Years in trade</span></div>
+          <div class="chip"><b>50K+</b><span>Tons recycled</span></div>
+          <div class="chip"><b>1,200+</b><span>Regular clients</span></div>
+        </div>
+      </div>
+      <div class="hero-visual-wrap">
+        <div class="hero-visual">
+          <div class="float-card-top"><span class="pulse"></span>Pickup slots open today</div>
+          <img class="hero-photo" src="images/sg-metal-yard.png" alt="Organised metal recycling yard with a weighbridge, pickup vehicle and trained workers" width="1672" height="941" fetchpriority="high">
+        </div>
+        <div class="float-card">
+          <div class="icon-wrap"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2 2 7v10l10 5 10-5V7L12 2z"/></svg></div>
+          <div>
+            <b id="statTons">0</b>
+            <span>Tons recycled to date</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ticker-wrap">
+    <div class="ticker">
+      <span>Iron &amp; Steel</span><span>Copper</span><span>Brass</span><span>Aluminium</span><span>Stainless Steel</span><span>Industrial Scrap</span><span>Batteries &amp; E‑Waste</span>
+      <span>Iron &amp; Steel</span><span>Copper</span><span>Brass</span><span>Aluminium</span><span>Stainless Steel</span><span>Industrial Scrap</span><span>Batteries &amp; E‑Waste</span>
+    </div>
+  </div>
+</section>
+
+<!-- MATERIALS -->
+<section class="materials" id="materials">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-kicker">MATERIALS WE BUY</span>
+      <h2>Every grade, weighed fairly</h2>
+      <p>Scrap prices move with the market, so rates are quoted per visit based on grade and quantity. Call us or send an inquiry for today's rate.</p>
+    </div>
+    <div class="bento">
+      <div class="bcard span-3 row-2 large">
+        <div class="mat-icon"><svg viewBox="0 0 24 24"><path d="M4 20V10l8-6 8 6v10M9 20v-6h6v6"/></svg></div>
+        <h3>Iron &amp; Steel <span class="tag ferrous">Ferrous</span></h3>
+        <p>Structural steel, sheets, rods, angles, girders and machinery scrap — our highest-volume category.</p>
+        <div class="rate">Rate on inspection</div>
+      </div>
+      <div class="bcard span-3 row-2 large">
+        <div class="mat-icon"><svg viewBox="0 0 24 24"><path d="M12 2v6M12 16v6M4.9 4.9l4.2 4.2M14.9 14.9l4.2 4.2M2 12h6M16 12h6M4.9 19.1l4.2-4.2M14.9 9.1l4.2-4.2"/></svg></div>
+        <h3>Copper <span class="tag nonferrous">Non‑ferrous</span></h3>
+        <p>Wire, cable, pipes, motor windings and copper utensils, bought at daily market-linked rates.</p>
+        <div class="rate">Rate on inspection</div>
+      </div>
+      <div class="bcard span-2">
+        <div class="mat-icon"><svg viewBox="0 0 24 24"><path d="M4 10h16M4 14h16M8 6v12M16 6v12"/></svg></div>
+        <h3>Brass <span class="tag nonferrous">Non‑ferrous</span></h3>
+        <p>Fittings, valves, turnings and utensils.</p>
+      </div>
+      <div class="bcard span-2">
+        <div class="mat-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-6 9 6-9 6-9-6zM3 9v6l9 6 9-6V9"/></svg></div>
+        <h3>Aluminium <span class="tag nonferrous">Non‑ferrous</span></h3>
+        <p>Sheets, sections, castings and cans.</p>
+      </div>
+      <div class="bcard span-2">
+        <div class="mat-icon"><svg viewBox="0 0 24 24"><path d="M12 3a5 5 0 015 5c0 3-5 9-5 9s-5-6-5-9a5 5 0 015-5z"/></svg></div>
+        <h3>Stainless Steel <span class="tag nonferrous">Non‑ferrous</span></h3>
+        <p>Kitchen equipment and industrial offcuts.</p>
+      </div>
+      <div class="bcard span-3">
+        <div class="mat-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6"/></svg></div>
+        <h3>Industrial &amp; Factory Scrap <span class="tag other">Bulk</span></h3>
+        <p>Machinery, plant shutdown material and mixed metal lots — we visit site and quote on the spot.</p>
+      </div>
+      <div class="bcard span-3">
+        <div class="mat-icon"><svg viewBox="0 0 24 24"><path d="M7 4h10v4H7zM5 8h14v12H5zM10 12h4"/></svg></div>
+        <h3>Batteries &amp; E‑Waste <span class="tag other">Special</span></h3>
+        <p>Lead-acid batteries, old wiring and electronic scrap, handled per regulation.</p>
+      </div>
+    </div>
+    <p class="ledger-note">Don't see your material listed? Send us a photo and quantity through the inquiry form and we'll quote you directly.</p>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why" id="why">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-kicker">WHY SG METAL SCRAP</span>
+      <h2>Built on an honest weighbridge</h2>
+      <p>Everything else in the business follows from getting the weight and the rate right, every single time.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card feature">
+        <span class="why-num">SINCE DAY ONE</span>
+        <h3>Certified weighing, fair pricing</h3>
+        <p>Every load is weighed on a calibrated scale in front of you, priced against the day's verified rate — no shortcuts, no guesswork.</p>
+      </div>
+      <div class="why-card light"><span class="why-num">DOORSTEP</span><h3>Free pickup</h3><p>Book a slot and our team collects from your home, office or site at no extra cost.</p></div>
+      <div class="why-card light"><span class="why-num">ON THE SPOT</span><h3>Instant payment</h3><p>Cash or bank transfer, paid the moment your material is weighed and confirmed.</p></div>
+      <div class="why-card light wide"><span class="why-num">COMPLIANT</span><h3>Licensed operation</h3><p>Fully registered dealer following local trade and environmental regulations.</p></div>
+      <div class="why-card light wide"><span class="why-num">RESPONSIBLE</span><h3>Eco‑friendly disposal</h3><p>Metal is sorted and routed for proper recycling, keeping it out of landfill.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-kicker">HOW IT WORKS</span>
+      <h2>Four steps to cash in hand</h2>
+      <p>From your first call to payment, here's exactly what happens.</p>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">01</div><h4>Enquire</h4><p>Call, WhatsApp or fill the form with what you're scrapping and roughly how much.</p></div>
+      <div class="step"><div class="step-num">02</div><h4>Schedule a visit</h4><p>We confirm a pickup slot that works for your home, office or site.</p></div>
+      <div class="step"><div class="step-num">03</div><h4>Weigh &amp; grade</h4><p>Material is sorted and weighed on-site on a calibrated scale, in front of you.</p></div>
+      <div class="step"><div class="step-num">04</div><h4>Get paid</h4><p>Payment is settled immediately — cash or bank transfer, your choice.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- YARD -->
+<section class="yard" id="yard">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-kicker">OUR YARD</span>
+      <h2>A glimpse of the operation</h2>
+      <p>Organised collection, transparent weighing and careful material sorting from pickup to recycling.</p>
+    </div>
+    <div class="yard-gallery">
+      <figure class="yard-photo"><img src="images/sg-metal-yard.png" alt="SG Metal Scrap yard with sorted steel and copper beside a certified weighbridge" width="1672" height="941" loading="lazy"><figcaption><b>Transparent weighing</b>Material is graded and weighed clearly before the final rate is confirmed.</figcaption></figure>
+      <figure class="yard-photo"><img src="images/sg-metal-team.png" alt="Professional scrap collection team standing beside the pickup vehicle" width="1536" height="1024" loading="lazy"><figcaption><b>Professional pickup team</b>Safety-equipped staff collect from homes, offices, factories and construction sites.</figcaption></figure>
+    </div>
+    <div class="yard-highlights">
+      <div class="yard-tile"><svg viewBox="0 0 24 24"><path d="M12 2 2 7v10l10 5 10-5V7L12 2z"/></svg>Certified weighbridge</div>
+      <div class="yard-tile"><svg viewBox="0 0 24 24"><path d="M4 20V10M9 20V6M14 20v-9M19 20V4"/></svg>Sorted metal stock</div>
+      <div class="yard-tile"><svg viewBox="0 0 24 24"><path d="M3 13h13l3 4h2M3 13V7h11v6M6 20a2 2 0 100-4 2 2 0 000 4zM17 20a2 2 0 100-4 2 2 0 000 4z"/></svg>Doorstep pickup vehicle</div>
+      <div class="yard-tile"><svg viewBox="0 0 24 24"><path d="M12 12a4 4 0 100-8 4 4 0 000 8zM4 20c0-3 4-5 8-5s8 2 8 5"/></svg>Trained collection team</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-head">
+      <span class="section-kicker">GET A FREE QUOTE</span>
+      <h2>Tell us what you have</h2>
+      <p>We'll get back to you with a pickup time and an indicative rate.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="form-card">
+        <h3>Send an inquiry</h3>
+        <p class="sub">Fill in your details below — every inquiry lands straight in our inbox so our team can call you back.</p>
+        <form id="inquiryForm">
+          <div class="field-row">
+            <div class="field"><label for="name">Full name</label><input type="text" id="name" name="name" placeholder="Your name" required></div>
+            <div class="field"><label for="phone">Mobile number</label><input type="tel" id="phone" name="phone" placeholder="+91 98765 43210" required></div>
+          </div>
+          <div class="field"><label for="email">Email address</label><input type="email" id="email" name="email" placeholder="you@example.com" required></div>
+          <div class="field-row">
+            <div class="field">
+              <label for="material">Material type</label>
+              <select id="material" name="material">
+                <option>Iron &amp; Steel</option><option>Copper</option><option>Brass</option>
+                <option>Aluminium</option><option>Stainless Steel</option>
+                <option>Industrial / Factory Scrap</option><option>Batteries / E-Waste</option>
+                <option>Mixed / Not sure</option>
+              </select>
+            </div>
+            <div class="field"><label for="qty">Estimated quantity</label><input type="text" id="qty" name="qty" placeholder="e.g. 200 kg"></div>
+          </div>
+          <div class="field"><label for="message">Pickup address / message</label><textarea id="message" name="message" placeholder="Where should we come, and anything else we should know?"></textarea></div>
+          <button type="submit" class="btn btn-primary" style="width:100%;border-radius:10px;">Send Inquiry</button>
+          <div class="form-msg" id="formMsg"></div>
+          <p class="form-note">By submitting, you agree to be contacted by SG Metal Scrap regarding your inquiry.</p>
+        </form>
+      </div>
+      <div class="contact-info">
+        <h3>Reach us directly</h3>
+        <div class="info-row"><div class="icon"><svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.7 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.4 21 3 13.6 3 4.6c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.2 1L6.6 10.8z"/></svg></div><div><h4>Phone</h4><a href="tel:+911234567890">+91 12345 67890</a></div></div>
+        <div class="info-row"><div class="icon"><svg viewBox="0 0 24 24"><path d="M2 4h20v16H2V4zm2 2v.01L12 12l8-5.99V6H4zm16 2.24-8 6-8-6V18h16V8.24z"/></svg></div><div><h4>Email</h4><a href="mailto:info@sgmetalscrap.com">info@sgmetalscrap.com</a></div></div>
+        <div class="info-row"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2C7.6 2 4 5.6 4 10c0 5.4 7 11.5 7.3 11.7.2.2.5.3.7.3s.5-.1.7-.3C13 21.5 20 15.4 20 10c0-4.4-3.6-8-8-8zm0 11a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/></svg></div><div><h4>Yard address</h4><p>Plot No. __, Industrial Area, Dhaulpur, Rajasthan</p></div></div>
+        <div class="info-row" style="border-bottom:none;"><div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z"/></svg></div><div><h4>Working hours</h4><p>Mon – Sat, 9:00 AM – 7:00 PM</p></div></div>
+        <div class="map-box">Embed your Google Map here (Google Maps → Share → Embed a map)</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="footer-logo">SG METAL <span>SCRAP</span></div><p>Trusted scrap metal buyers offering fair rates, free pickup and instant payment across the region.</p></div>
+      <div><h4>Company</h4><ul><li><a href="#why">Why Us</a></li><li><a href="#process">Our Process</a></li><li><a href="#yard">Our Yard</a></li></ul></div>
+      <div><h4>Materials</h4><ul><li><a href="#materials">Iron &amp; Steel</a></li><li><a href="#materials">Copper &amp; Brass</a></li><li><a href="#materials">Aluminium</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li>+91 12345 67890</li><li>info@sgmetalscrap.com</li><li>Dhaulpur, Rajasthan</li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© <span id="year"></span> SG Metal Scrap. All rights reserved.</span><span>Buy · Sell · Recycle</span></div>
+  </div>
+</footer>
+
+<a class="wa-fab" href="https://wa.me/911234567890?text=Hi%2C%20I%20have%20scrap%20metal%20to%20sell" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.31-1.39a9.9 9.9 0 0 0 4.73 1.2h.01c5.46 0 9.9-4.45 9.9-9.9C21.96 6.45 17.5 2 12.04 2zm0 18.06h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.84-3.04-.2-.31a8.16 8.16 0 0 1-1.26-4.29c0-4.52 3.68-8.2 8.2-8.2 2.19 0 4.25.85 5.8 2.4a8.15 8.15 0 0 1 2.4 5.81c0 4.52-3.68 8.19-8.16 8.19zm4.5-6.13c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.14.17-.29.19-.54.06-.25-.12-1.04-.38-1.98-1.22-.73-.65-1.22-1.46-1.37-1.7-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.24-.41.08-.17.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.57.12.17 1.75 2.67 4.24 3.74.59.26 1.06.41 1.42.52.6.19 1.14.16 1.57.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.1-.23-.16-.48-.28z"/></svg>
+</a>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var burger = document.getElementById('burgerBtn');
+  var menu = document.getElementById('mobileMenu');
+  burger.addEventListener('click', function(){
+    menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+  });
+  menu.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ menu.style.display = 'none'; });
+  });
+
+  // count-up for the floating hero stat
+  (function(){
+    var el = document.getElementById('statTons');
+    var target = 50000, current = 0;
+    var duration = 1400, startTime = null;
+    function step(ts){
+      if(!startTime) startTime = ts;
+      var progress = Math.min((ts - startTime) / duration, 1);
+      current = Math.floor(progress * target);
+      el.textContent = current.toLocaleString('en-IN') + '+';
+      if(progress < 1) requestAnimationFrame(step);
+    }
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      el.textContent = target.toLocaleString('en-IN') + '+';
+    } else {
+      requestAnimationFrame(step);
+    }
+  })();
+
+  // ---- Inquiry form submission ----
+  // This posts to Formspree so every inquiry arrives straight in your inbox
+  // (acting as your "admin panel" without needing a paid server/database).
+  // Setup: create a free form at https://formspree.io, then replace
+  // YOUR_FORM_ID below with the ID Formspree gives you.
+  var FORM_ENDPOINT = "https://formspree.io/f/YOUR_FORM_ID";
+
+  var form = document.getElementById('inquiryForm');
+  var msg = document.getElementById('formMsg');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    msg.className = 'form-msg';
+    msg.style.display = 'none';
+
+    if (FORM_ENDPOINT.indexOf('YOUR_FORM_ID') !== -1) {
+      msg.textContent = "Form isn't connected yet — see the setup note in the guide provided with this file.";
+      msg.className = 'form-msg err';
+      return;
+    }
+
+    var data = new FormData(form);
+    fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(function(res){
+      if (res.ok) {
+        msg.textContent = "Thanks! Your inquiry has been sent — we'll call you back shortly.";
+        msg.className = 'form-msg ok';
+        form.reset();
+      } else {
+        msg.textContent = "Something went wrong. Please call or WhatsApp us instead.";
+        msg.className = 'form-msg err';
+      }
+    }).catch(function(){
+      msg.textContent = "Network error. Please call or WhatsApp us instead.";
+      msg.className = 'form-msg err';
+    });
+  });
+</script>
+
+</body>
+</html>
